@@ -9,7 +9,7 @@ if __name__ == '__main__':
 	jobs = []
 	for i in range(0, threads):
 		l = list()
-		thread = threading.Thread(target=fn(size, l))
+		thread = threading.Thread(target=fn(size, l, i))
 		jobs.append(thread)
 	
 	for j in jobs:
