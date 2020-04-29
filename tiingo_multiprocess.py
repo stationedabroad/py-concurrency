@@ -11,7 +11,7 @@ if __name__ == '__main__':
     
     jobs = []
     for i, ticker in enumerate(stocks):
-        proc = multiprocessing.Process(target=fn, agrs=(ticker['symbol_code'], i))
+        proc = multiprocessing.Process(target=fn, args=(ticker['symbol_code'], i))
         jobs.append(proc)
 
     for j in jobs:
