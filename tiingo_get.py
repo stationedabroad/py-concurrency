@@ -14,7 +14,6 @@ def get_eod_price(stock, caller_id):
 
     try:
         url = url.format(stock, token)
-        print(url)
         content = requests.get(url, headers=header)
         status = content.status_code
     except Exception as e:
