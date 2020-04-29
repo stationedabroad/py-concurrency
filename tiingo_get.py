@@ -9,10 +9,12 @@ def get_eod_price(stock, caller_id):
     }    
 
     token = os.getenv("TIINGO_TK")
-    url = "https://api.tiingo.com/tiingo/daily/{0}/prices?{1}"
+    url = "https://api.tiingo.com/tiingo/daily/{}/prices?token={}"
+    
 
     try:
         url = url.format(stock, token)
+        print(url)
         content = requests.get(url, headers=header)
         status = content.status_code
     except Exception as e:
