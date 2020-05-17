@@ -27,7 +27,7 @@ class TiingoApi(Thread):
             try:
                 fn(ticker, id)
             finally:
-                self.queue.done()
+                self.queue.task_done()
 
 
 def main():
@@ -49,7 +49,7 @@ def main():
     queue.join()
     elapsed = time() - start
     logger.info(f'Total run time {elapsed}')
-    print(f'Total time: {elapsed}'')
+    print(f'Total time: {elapsed}')
 
 
 if __name__ == '__main__':
