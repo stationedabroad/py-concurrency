@@ -35,7 +35,7 @@ def main():
 
     queue = Queue()
     # set cores
-    for x in range(4):
+    for _ in range(4):
         worker = TiingoApi(queue)
         worker.daemon = True
         worker.start()
