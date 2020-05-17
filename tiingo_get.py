@@ -19,5 +19,6 @@ def get_eod_price(stock, caller_id):
     except Exception as e:
         status = None
         print(f"exception during API call - {e}")
+        raise Exception(f'API error {url}')
     
     print(f'Call - {caller_id} completed for ticker: {stock} with status: {status}')
