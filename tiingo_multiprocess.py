@@ -1,7 +1,9 @@
 import json
 import multiprocessing
 import time
+
 from tiingo_get import get_eod_price as fn
+from tiingo_logger import logger
 
 
 if __name__ == '__main__':
