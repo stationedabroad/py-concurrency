@@ -15,19 +15,23 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
+
 class TiingoApi(Thread):
 
-    def __init__(self, queue):
+    def __init__(self, queue, logger):
         Thread.__init__(self)
         self.queue = queue
+        self.logger = logger
 
     def run(self):
         while True:
             ticker, id = self.queue.get()
+            self.logger.info(f'Thread entered for: {ticker} with id: {id}')
             try:
                 fn(ticker, id)
             finally:
                 self.queue.task_done()
+                self.logger.info(f'Processing complete for: {ticker} with id: {id}')
 
 
 def main():
@@ -36,7 +40,7 @@ def main():
     queue = Queue()
     # set cores
     for _ in range(4):
-        worker = TiingoApi(queue)
+        worker = TiingoApi(queue, logger)
         worker.daemon = True
         worker.start()
 

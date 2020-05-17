@@ -3,7 +3,7 @@ import time
 
 if __name__ == '__main__':
     st = time.time()
-    size = 10000000
+    size = 100000
     runs = 10
     
     for i in range(runs):
