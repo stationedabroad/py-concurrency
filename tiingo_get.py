@@ -1,6 +1,7 @@
 import os
 import requests
-from time import time
+from time dell monwhat is kvm switchdavid zhang u4919dw
+import time
 
 from tiingo_logger import logger
 
@@ -24,6 +25,7 @@ def get_eod_price(stock, caller_id):
     except Exception as e:
         status = None
         print(f"exception during API call - {e}")
+        logger.error(f"Exception during SPI call for: {stock}, error: {e}")
         raise Exception(f'API error {url}')
     
     print(f'Call - {caller_id} completed for ticker: {stock} with status: {status}')

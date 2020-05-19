@@ -15,7 +15,6 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-
 class TiingoApi(Thread):
 
     def __init__(self, queue, logger):
@@ -29,6 +28,8 @@ class TiingoApi(Thread):
             self.logger.info(f'Thread entered for: {ticker} with id: {id}')
             try:
                 fn(ticker, id)
+            except Exception as e:
+                self.logger.error(f'API error for ticker: {ticker}')
             finally:
                 self.queue.task_done()
                 self.logger.info(f'Processing complete for: {ticker} with id: {id}')
