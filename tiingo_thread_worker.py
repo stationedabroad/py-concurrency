@@ -17,8 +17,8 @@ logger = logging.getLogger(__name__)
 
 class TiingoApi(Thread):
 
-    def __init__(self, queue, logger):
-        Thread.__init__(self)
+    def __init__(self, queue, logger, daemon):
+        Thread.__init__(self, daemon=daemon)
         self.queue = queue
         self.logger = logger
 
@@ -41,8 +41,7 @@ def main():
     queue = Queue()
     # set cores
     for _ in range(4):
-        worker = TiingoApi(queue, logger)
-        worker.daemon = True
+        worker = TiingoApi(queue, logger, daemon=True)
         worker.start()
 
     with open('Technology-2019-11-10.json', 'r') as r:
