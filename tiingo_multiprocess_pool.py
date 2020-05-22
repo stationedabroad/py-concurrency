@@ -1,3 +1,4 @@
+import os
 import ujson
 import logging
 from multiprocessing.pool import Pool
@@ -16,15 +17,15 @@ logger = logging.getLogger(__name__)
 
 def get_stocks(stock_json):
     return [stock['symbol_code'] for stock in stock_json]
-    
 
-def main():
+
+def main(core_pool):
     start = time()
     
     with open('Technology-2019-11-10.json', 'r') as r:
         stocks = get_stocks(ujson.load(r))
 
-    with Pool(12) as p:
+    with Pool(core_pool) as p:
         p.map(fn, stocks)
 
     elapsed = time() - start
@@ -33,4 +34,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    cores = 4
+    if os.sys.argv == 2:
+        cores = os.sys.argv[1]
+    main(cores)
