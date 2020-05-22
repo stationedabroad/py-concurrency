@@ -24,7 +24,7 @@ def main():
     with open('Technology-2019-11-10.json', 'r') as r:
         stocks = get_stocks(ujson.load(r))
 
-    with Pool(4) as p:
+    with Pool(12) as p:
         p.map(fn, stocks)
 
     elapsed = time() - start
